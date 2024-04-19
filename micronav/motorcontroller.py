@@ -30,6 +30,13 @@ class SerialPublisher(Node):
         else:
             command = 'C stop\n'
 
+        if msg.angular.x == 85:  # 'U' key
+            command = 'S up\n'
+        elif msg.angular.x == 60:  # '<' key
+            command = 'S mid\n'
+        elif msg.angular.x == 79:  # 'O' key
+            command = 'S down\n'
+
         # Send command over serial
         self.serial_port.write(command.encode())
 
